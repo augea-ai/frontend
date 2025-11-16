@@ -7,6 +7,7 @@ const __dirname = path.dirname(__filename);
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  output: "standalone", // Required for Docker deployment
   outputFileTracingRoot: path.resolve(__dirname),
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 
