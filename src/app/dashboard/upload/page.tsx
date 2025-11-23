@@ -1,9 +1,6 @@
 "use client";
 
-// DISABLED: This old Solana upload route has been replaced with Walrus decentralized storage
 // Redirect users to the new Walrus upload page at /upload
-//
-// To re-enable this route, uncomment the code below and comment out the redirect
 
 import { usePrivy } from "@privy-io/react-auth";
 import { useRouter } from "next/navigation";
