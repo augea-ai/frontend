@@ -18,6 +18,10 @@ export interface DatasetDTO {
   status?: DatasetStatus | null;
   verificationScore?: number | string | null;
   verificationStatus?: "verified" | "pending" | "failed" | null;
+  storageProvider?: string | null;
+  storageKey?: string | null;
+  blobId?: string | null;
+  walrusEpochs?: number | null;
   imageUrl?: string | null;
   previewImageUrl?: string | null;
   image?: string | null;
@@ -40,6 +44,7 @@ export interface DatasetDTO {
   datasetHash?: string | null;
   blockchainTxHash?: string | null;
   blockchainExplorerUrl?: string | null;
+  txDigest?: string | null;
   uploadStatus?: string | null;
   uploadProgress?: number | null;
   uploadStartedAt?: string | null;
@@ -283,6 +288,7 @@ export function datasetDtoToCard(
       verificationScore,
     ),
     isMarketplaceOnly: Boolean(dto.isMarketplaceOnly && !isOwner),
+    storageCID: dto.blobId ?? dto.storageKey ?? null,
   };
 
   return datasetCard;

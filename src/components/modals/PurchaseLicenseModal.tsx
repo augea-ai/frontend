@@ -147,12 +147,31 @@ export function PurchaseLicenseModal({
                   </a>
                 )}
               </div>
-              <button
-                onClick={onClose}
-                className="w-full bg-brand-green hover:bg-brand-green-strong text-white font-semibold py-3 rounded-lg"
-              >
-                Close
-              </button>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => {
+                    console.log('Download clicked, blobId:', dataset.blobId);
+                    if (dataset.blobId) {
+                      // Direct download from Walrus testnet
+                      const walrusUrl = `https://aggregator.walrus-testnet.walrus.space/v1/blobs/${dataset.blobId}`;
+                      console.log('Opening Walrus URL:', walrusUrl);
+                      window.open(walrusUrl, '_blank');
+                    } else {
+                      console.error('No blobId available for download');
+                    }
+                  }}
+                  disabled={!dataset.blobId}
+                  className="flex-1 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-700 text-white font-semibold py-3 rounded-lg"
+                >
+                  Download Dataset
+                </button>
+                <button
+                  onClick={onClose}
+                  className="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg"
+                >
+                  Close
+                </button>
+              </div>
             </>
           )}
         </div>
