@@ -35,7 +35,7 @@ const UploadCard: React.FC = () => {
         {/* Button section */}
         <div className="flex items-center justify-center pt-4 border-t border-gray-700">
           <Link
-            href="/dashboard/upload"
+            href="/upload"
             className="bg-brand-green-light hover:bg-brand-green-strong text-white px-6 py-2 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg border border-brand-green-light w-full text-center"
           >
             Get Started

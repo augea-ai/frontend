@@ -1,3 +1,7 @@
+import { resolveApiBaseUrl } from "@/lib/env";
+
+const LOCAL_API_FALLBACK = "http://localhost:4000";
+
 export class ApiError<T = unknown> extends Error {
   public readonly status: number;
   public readonly data?: T;
@@ -17,7 +21,7 @@ export interface ApiFetchOptions extends Omit<RequestInit, "body"> {
 }
 
 export function getApiBaseUrl(): string {
-  const raw = process.env.NEXT_PUBLIC_API_BASE_URL?.trim() || "http://localhost:4000";
+  const raw = resolveApiBaseUrl() ?? LOCAL_API_FALLBACK;
   return raw.replace(/\/+$/, "");
 }
 

@@ -1,5 +1,40 @@
 import { z } from "zod";
 
+function trimUrl(value?: string | null): string | undefined {
+  if (!value) {
+    return undefined;
+  }
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return undefined;
+  }
+  return trimmed.replace(/\/+$/, "");
+}
+
+function deriveApiBaseUrl({
+  apiBaseUrl,
+  appUrl,
+}: {
+  apiBaseUrl?: string | null;
+  appUrl?: string | null;
+}): string | undefined {
+  const normalizedApi = trimUrl(apiBaseUrl);
+  if (normalizedApi) {
+    return normalizedApi;
+  }
+
+  const normalizedApp = trimUrl(appUrl);
+  if (normalizedApp) {
+    return `${normalizedApp}/api`;
+  }
+
+  if (typeof window !== "undefined" && window.location?.origin) {
+    return `${window.location.origin.replace(/\/+$/, "")}/api`;
+  }
+
+  return undefined;
+}
+
 const publicEnvSchema = z.object({
   appUrl: z
     .string()
@@ -22,10 +57,17 @@ const publicEnvSchema = z.object({
 export type PublicEnv = z.infer<typeof publicEnvSchema>;
 export type ValidatedEnv = PublicEnv;
 
+export function resolveApiBaseUrl(): string | undefined {
+  return deriveApiBaseUrl({
+    apiBaseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
+    appUrl: process.env.NEXT_PUBLIC_APP_URL,
+  });
+}
+
 export function validatePublicEnv(): PublicEnv {
   const envValues = {
     appUrl: process.env.NEXT_PUBLIC_APP_URL,
-    apiBaseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
+    apiBaseUrl: resolveApiBaseUrl(),
     privyAppId: process.env.NEXT_PUBLIC_PRIVY_APP_ID,
     privyClientId: process.env.NEXT_PUBLIC_PRIVY_CLIENT_ID,
     solanaRpcUrl: process.env.NEXT_PUBLIC_SOLANA_RPC_URL,

@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 const HeroSection = () => {
   return (
     <div className="relative overflow-hidden bg-gray-900">
@@ -27,12 +29,12 @@ const HeroSection = () => {
             >
               <span className="relative z-10">Explore Datasets</span>
             </button>
-            <button
-              type="button"
-              className="bg-gray-800 border-2 border-gray-600 text-gray-300 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-700 hover:border-gray-500 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            <Link
+              href="/upload"
+              className="bg-gray-800 border-2 border-gray-600 text-gray-300 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-700 hover:border-gray-500 transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center justify-center"
             >
               <span>List Your Data</span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

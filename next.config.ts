@@ -92,7 +92,11 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
-        // Add any rewrites here if needed
+        // Proxy API requests to backend on port 3001
+        {
+          source: "/api/:path*",
+          destination: "http://localhost:3001/api/:path*",
+        },
       ],
       afterFiles: [
         // Add any rewrites here if needed
