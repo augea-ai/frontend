@@ -309,7 +309,7 @@ const DatasetCard: React.FC<DatasetCardProps> = ({ dataset }) => {
           id: dataset.id,
           title: dataset.title,
           price: dataset.price || "$0.1",
-          blobId: dataset.storageCID,
+          blobId: dataset.storageCID || undefined,
         }}
       />
     </div>

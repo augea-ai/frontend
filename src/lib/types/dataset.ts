@@ -37,6 +37,7 @@ export interface DatasetCardBase {
   blockchainTxHash?: string | null;
   blockchainExplorerUrl?: string | null;
   datasetHash?: string | null;
+  storageCID?: string | null;
 }
 
 export interface ExtendedDataset extends DatasetCardBase {

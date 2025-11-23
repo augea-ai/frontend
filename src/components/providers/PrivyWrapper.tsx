@@ -69,9 +69,12 @@ export function PrivyWrapper({ children }: PrivyWrapperProps) {
           clientId={clientId}
           config={{
             embeddedWallets: {
-              createOnLogin: "users-without-wallets",
-              requireUserPasswordOnCreate: false,
-              noPromptOnSignature: false,
+              ethereum: {
+                createOnLogin: "users-without-wallets",
+              },
+              solana: {
+                createOnLogin: "users-without-wallets",
+              },
             },
             loginMethods: ["email", "wallet", "google", "github"],
             supportedChains: [
