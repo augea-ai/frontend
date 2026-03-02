@@ -1,5 +1,4 @@
 "use client";
-
 import {
   ArrowRight,
   Brain,
@@ -20,11 +19,9 @@ import {
   PriorityHeading,
   PriorityText,
 } from "@/components/optimized/PriorityComponents";
-
 export default function Home() {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -36,35 +33,28 @@ export default function Home() {
       },
       { threshold: 0.1 },
     );
-
     const sections = document.querySelectorAll("[data-animate]");
     for (const section of sections) {
       observer.observe(section);
     }
-
     return () => {
       observer.disconnect();
     };
   }, []);
-
   const scrollToNext = () => {
     const nextSection = document.getElementById("features");
     nextSection?.scrollIntoView({ behavior: "smooth" });
   };
-
   const launchMarketplace = () => {
     router.push("/marketplace");
   };
-
   return (
     <div className="min-h-screen overflow-x-hidden bg-gray-950 text-white">
       {/* Gradient Background */}
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-gray-900/80 to-gray-900/60" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-green/20 via-transparent to-transparent" />
-        <div className="absolute inset-y-0 right-0 w-2/3 bg-[radial-gradient(circle_at_top,_rgba(31,185,196,0.2),transparent_70%)] blur-3xl" />
+      <div className="fixed inset-0 -z-10 bg-gray-950">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(99,247,125,0.10),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(31,185,196,0.07),transparent_55%)]" />
       </div>
-
       {/* Hero Section - Optimized for faster LCP */}
       <OptimizedHero className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
@@ -100,7 +90,6 @@ export default function Home() {
                 Watch Demo
               </button>
             </div>
-
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
               <div className="text-center">
@@ -119,7 +108,6 @@ export default function Home() {
             <p className="text-xs text-gray-500 text-center mt-6 italic">* Projected marketplace capacity</p>
           </div>
         </div>
-
         <div className="text-center mt-16">
           <button
             onClick={scrollToNext}
@@ -130,7 +118,6 @@ export default function Home() {
           </button>
         </div>
       </OptimizedHero>
-
       {/* Features Section */}
       <section
         id="features"
@@ -148,7 +135,6 @@ export default function Home() {
               Whether you're collecting data or buying it, we make it simple and transparent.
             </p>
           </div>
-
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
@@ -191,7 +177,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-
           {/* Data Quality Guarantees Section */}
           <div className="mt-20 bg-gradient-to-r from-gray-700/50 to-gray-800/50 backdrop-blur-sm p-12 rounded-2xl border border-gray-600">
             <h3 className="text-2xl font-bold text-white mb-8 text-center">
@@ -232,7 +217,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Solutions Section */}
       <section
         id="solutions"
@@ -250,7 +234,6 @@ export default function Home() {
               Different needs, same platform. Whether you're selling data or buying it, we've got you covered.
             </p>
           </div>
-
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h3 className="text-3xl font-bold text-white mb-6">
@@ -314,7 +297,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Featured Datasets Section */}
       <section
         id="featured"
@@ -335,7 +317,6 @@ export default function Home() {
               * Examples shown are for demonstration purposes only
             </p>
           </div>
-
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
               {
@@ -381,7 +362,6 @@ export default function Home() {
                   </div>
                 </div>
                 <p className="text-gray-400 mb-4">{dataset.description}</p>
-                
                 <div className="grid grid-cols-3 gap-3 mb-4 pb-4 border-b border-gray-700">
                   <div>
                     <div className="text-xs text-gray-500 uppercase tracking-wider">Data Points</div>
@@ -396,11 +376,9 @@ export default function Home() {
                     <div className="font-semibold text-brand-green">{dataset.downloads}</div>
                   </div>
                 </div>
-
                 <p className="text-sm text-gray-400 mb-4">
                   <span className="font-medium">by</span> {dataset.creator}
                 </p>
-                
                 <button
                   type="button"
                   onClick={launchMarketplace}
@@ -412,7 +390,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-
           <div className="text-center mt-12">
             <p className="text-gray-400 mb-4">
               These are just a few examples. Browse our full marketplace for thousands more datasets.
@@ -428,8 +405,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-brand-green/90 to-brand-green-strong/90 backdrop-blur-sm relative z-10">
         <div className="max-w-4xl mx-auto text-center">
@@ -448,7 +423,6 @@ export default function Home() {
           </button>
         </div>
       </section>
-
       {/* Pricing & Features Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900 relative z-10">
         <div className="max-w-7xl mx-auto">
@@ -460,7 +434,6 @@ export default function Home() {
               No hidden fees. Know exactly what you'll earn or spend.
             </p>
           </div>
-
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
               {
@@ -521,7 +494,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Audience Paths Section */}
       <section className="relative z-10 bg-gray-800/90 py-20 px-4 sm:px-6 lg:px-8 backdrop-blur-sm">
         <div className="mx-auto max-w-6xl">
@@ -533,7 +505,6 @@ export default function Home() {
               Choose the track that matches your goals—whether you&apos;re sourcing production data, validating research, or shipping features fast.
             </p>
           </div>
-
           <div className="grid gap-6 md:grid-cols-3">
             {[
               {
@@ -600,7 +571,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-
           <p className="mt-10 text-center text-sm text-gray-500">
             Want the full breakdown? Dive into our{" "}
             <Link href="/docs" className="font-semibold text-brand-green hover:text-brand-green-light">
@@ -614,7 +584,6 @@ export default function Home() {
           </p>
         </div>
       </section>
-
       {/* Use Cases & Applications Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900 relative z-10">
         <div className="max-w-7xl mx-auto">
@@ -626,7 +595,6 @@ export default function Home() {
               See how researchers and companies are using our data to build better AI.
             </p>
           </div>
-
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {[
               {
@@ -691,7 +659,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-
           <div className="mt-12 bg-gradient-to-r from-brand-green/20 to-brand-green-strong/20 backdrop-blur-sm p-8 rounded-xl border border-brand-green/30 max-w-4xl mx-auto">
             <div className="text-center">
               <h3 className="text-2xl font-bold text-white mb-3">
